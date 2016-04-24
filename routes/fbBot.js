@@ -32,7 +32,8 @@ router.post('/', function (req, res) {
 			}
 			console.log('back');
 
-	 	} else if(event.postback.payload){
+	 	} 
+	 	/*else if(event.postback.payload){
 	 		var payload = event.postback.payload;
 	 		if(payload == 'IMAGE'){
 	 			gag.section('funny', 'hot', function (err, res) {
@@ -42,7 +43,7 @@ router.post('/', function (req, res) {
 	 			var num = Math.floor(Math.random()*JOKE.length);
 	 			fbBotUtil.sendTextMessage(sender, JOKE[num]);
 	 		}
-	 	}
+	 	}*/
 	}
   res.sendStatus(200);
 });
