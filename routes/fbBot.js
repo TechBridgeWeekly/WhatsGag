@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 var fbBotUtil = require('./lib/fbbot.js');
 var gag = require('node-9gag');
+var nlp = require('./lib/nlp');
+var JOKE = require('./lib/joke');
 
 router.get('/', function (req, res) {
 	if (req.query['hub.verify_token'] === 'whatsgag') {
@@ -16,20 +18,28 @@ router.post('/', function (req, res) {
 		event = req.body.entry[0].messaging[i];
 		sender = event.sender.id;
 		if (event.message && event.message.text) {
+
+			// parse text
 			text = event.message.text;
-			// Handle a text message from this sender
-			
-			if (text === 'Generic') {
+			var resp = nlp.parseText(text);
+
+			if(text=='JOKE') {
 				fbBotUtil.sendGenericMessage(sender);
-			} else if (text === 'gag') {
-				gag.section('funny', 'hot', function (err, res) {
+			} else {
+				fbBotUtil.sendTextMessage(sender, text);
+			}
+
+	 	} else if(event.postback.payload){
+	 		var payload = event.postback.payload;
+	 		if(payload == 'IMAGE'){
+	 			gag.section('funny', 'hot', function (err, res) {
 				  fbBotUtil.sendGagMessage(sender, res);	
 				});
-			} else {
-				fbBotUtil.sendTextMessage(sender, "Text received, echo: "+ text.substring(0, 200));
-			}
-			
-	  }
+	 		} else if( payload == 'TEXT'){
+	 			var num = Math.floor(Math.random()*JOKE.length);
+	 			fbBotUtil.sendTextMessage(sender, JOKE[num]);
+	 		}
+	 	}
 	}
   res.sendStatus(200);
 });

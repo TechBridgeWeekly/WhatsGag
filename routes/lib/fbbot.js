@@ -29,26 +29,17 @@ exports.sendGenericMessage = function sendGenericMessage(sender) {
 			"payload": {
 				"template_type": "generic",
 				"elements": [{
-					"title": "First card",
-					"subtitle": "Element #1 of an hscroll",
+					"title": "你想聽什麼種類的笑話呢？",
+					"subtitle": "請選擇！",
 					"image_url": "http://messengerdemo.parseapp.com/img/rift.png",
 					"buttons": [{
-						"type": "web_url",
-						"url": "https://www.messenger.com/",
-						"title": "Web url"
+						"type": "postback",
+						"title": "圖片",
+						"payload": 'IMAGE'
 					}, {
 						"type": "postback",
-						"title": "Postback",
-						"payload": "Payload for first element in a generic bubble",
-					}],
-				},{
-					"title": "Second card",
-					"subtitle": "Element #2 of an hscroll",
-					"image_url": "http://messengerdemo.parseapp.com/img/gearvr.png",
-					"buttons": [{
-						"type": "postback",
-						"title": "Postback",
-						"payload": "Payload for second element in a generic bubble",
+						"title": "文字",
+						"payload": "TEXT",
 					}],
 				}]
 			}
