@@ -21,7 +21,9 @@ router.post('/', function (req, res) {
 
 			// parse text
 			text = event.message.text;
+			console.log('input:', text);
 			var resp = nlp.parseText(text);
+			console.log('text:', resp);
 
 			if(resp=='JOKE') {
 				fbBotUtil.sendGenericMessage(sender);
