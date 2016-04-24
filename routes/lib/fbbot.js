@@ -5,7 +5,6 @@ exports.sendTextMessage = function sendTextMessage(sender, text) {
 	messageData = {
 		text:text
 	}
-	console.log(messageData);
 	request({
 		url: 'https://graph.facebook.com/v2.6/me/messages',
 		qs: {access_token:token},
@@ -20,7 +19,6 @@ exports.sendTextMessage = function sendTextMessage(sender, text) {
 		} else if (response.body.error) {
 			console.log('Error: ', response.body.error);
 		}
-		console.log('success:', body);
 	});
 }
 
@@ -33,7 +31,6 @@ exports.sendGenericMessage = function sendGenericMessage(sender) {
 				"elements": [{
 					"title": "你想聽什麼種類的笑話呢？",
 					"subtitle": "請選擇！",
-					"image_url": "http://messengerdemo.parseapp.com/img/rift.png",
 					"buttons": [{
 						"type": "postback",
 						"title": "圖片",

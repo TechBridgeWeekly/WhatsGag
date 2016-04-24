@@ -31,7 +31,6 @@ router.post('/', function (req, res) {
 			} else {
 				fbBotUtil.sendTextMessage(sender, resp);
 			}
-			console.log('back');
 
 	 	} else if(event.postback && event.postback.payload){
 	 		var payload = event.postback.payload;
