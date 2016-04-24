@@ -23,10 +23,10 @@ router.post('/', function (req, res) {
 			text = event.message.text;
 			var resp = nlp.parseText(text);
 
-			if(text=='JOKE') {
+			if(resp=='JOKE') {
 				fbBotUtil.sendGenericMessage(sender);
 			} else {
-				fbBotUtil.sendTextMessage(sender, text);
+				fbBotUtil.sendTextMessage(sender, resp);
 			}
 
 	 	} else if(event.postback.payload){
