@@ -4,7 +4,7 @@ var fbBotUtil = require('./lib/fbbot.js');
 var gag = require('node-9gag');
 
 router.get('/', function (req, res) {
-	if (req.query['hub.verify_token'] === 'yucc') {
+	if (req.query['hub.verify_token'] === 'whatsgag') {
 		res.send(req.query['hub.challenge']);
 	}
 	res.send('Error, wrong validation token');
